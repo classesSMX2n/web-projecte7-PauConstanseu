@@ -2,7 +2,8 @@
 
 ![Logo](FoodLogisticLogo.png)
 
-Autors: Pau constanseu i Pol Serrano
+- Autors: Pau constanseu i Pol Serrano
+- Pàgina web: https://classessmx2n.github.io/web-projecte7-PauConstanseu/
 
 ## Descripció
 
