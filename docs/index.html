@@ -192,41 +192,54 @@
                         </div>
                         <div>
                             <p class="text-sm text-emerald-400 font-bold uppercase tracking-widest">Atenció Directe</p>
-                            <p class="text-lg">+34 935 55 55 55</p>
+                            <p class="text-lg">+34 937 55 55 55</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <form class="bg-white p-10 rounded-3xl text-slate-900 space-y-6 shadow-2xl">
-                <div class="grid grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-tighter">Nom</label>
-                        <input type="text" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none transition" placeholder="Nom">
+            <div class="relative">
+                <form id="contact-form" class="bg-white p-10 rounded-3xl text-slate-900 space-y-6 shadow-2xl transition-opacity duration-300">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-tighter">Nom</label>
+                            <input type="text" required class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none transition" placeholder="Nom">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-tighter">Empresa</label>
+                            <input type="text" required class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none transition" placeholder="Nom Fiscal">
+                        </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-tighter">Empresa</label>
-                        <input type="text" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none transition" placeholder="Nom Fiscal">
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-tighter">Correu Electrònic</label>
+                        <!-- 'type="email"' valida automàticament que hi hagi una "@" -->
+                        <input type="email" required class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none transition" placeholder="correu@empresa.com">
                     </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-tighter">Consulta</label>
+                        <textarea rows="4" required class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none transition" placeholder="Detalls del servei requerit..."></textarea>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <input type="checkbox" id="privacy" class="mt-1 w-5 h-5 accent-emerald-600 cursor-pointer" required>
+                        <label for="privacy" class="text-xs text-slate-400 leading-relaxed">
+                            He llegit i accepto la <button type="button" onclick="openModal('privadesa')" class="text-emerald-600 hover:underline">política de privadesa</button> i el tractament de dades personals.
+                        </label>
+                    </div>
+                    <button type="submit" class="w-full bg-emerald-600 text-white py-5 rounded-2xl font-bold hover:bg-emerald-700 transition-all hover:scale-[1.01] active:scale-95 shadow-xl shadow-emerald-200 uppercase tracking-widest text-sm">
+                        Enviar Sol·licitud
+                    </button>
+                </form>
+
+                <!-- MISSATGE D'ÈXIT (Ocult per defecte) -->
+                <div id="success-message" class="hidden absolute inset-0 bg-white rounded-3xl p-10 flex flex-col items-center justify-center text-center shadow-2xl">
+                    <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-check text-4xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Enviat correctament!</h3>
+                    <p class="text-slate-500 mb-8">Hem rebut la teva consulta. Un dels nostres assessors es posarà en contacte amb tu en menys de 24 hores.</p>
+                    <button onclick="resetForm()" class="text-emerald-600 font-bold hover:underline uppercase tracking-widest text-xs">Enviar un altre missatge</button>
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-tighter">Correu Electrònic</label>
-                    <input type="email" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none transition" placeholder="correu@empresa.com">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-tighter">Consulta</label>
-                    <textarea rows="4" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none transition" placeholder="Detalls del servei requerit..."></textarea>
-                </div>
-                <div class="flex items-start space-x-3">
-                    <input type="checkbox" id="privacy" class="mt-1 w-5 h-5 accent-emerald-600 cursor-pointer" required>
-                    <label for="privacy" class="text-xs text-slate-400 leading-relaxed">
-                        He llegit i accepto la <button type="button" onclick="openModal('privadesa')" class="text-emerald-600 hover:underline">política de privadesa</button> i el tractament de dades personals.
-                    </label>
-                </div>
-                <button type="submit" class="w-full bg-emerald-600 text-white py-5 rounded-2xl font-bold hover:bg-emerald-700 transition-all hover:scale-[1.01] active:scale-95 shadow-xl shadow-emerald-200 uppercase tracking-widest text-sm">
-                    Enviar Sol·licitud
-                </button>
-            </form>
+            </div>
         </div>
     </section>
 
@@ -352,6 +365,31 @@
             }
         };
 
+        // Gestió del Formulari
+        const contactForm = document.getElementById('contact-form');
+        const successMessage = document.getElementById('success-message');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita que la pàgina es recarregui
+            
+            // Simulem l'enviament
+            contactForm.classList.add('opacity-0');
+            setTimeout(() => {
+                contactForm.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+                successMessage.classList.add('flex');
+            }, 300);
+        });
+
+        function resetForm() {
+            contactForm.reset();
+            successMessage.classList.add('hidden');
+            successMessage.classList.remove('flex');
+            contactForm.classList.remove('hidden');
+            setTimeout(() => contactForm.classList.remove('opacity-0'), 50);
+        }
+
+        // Gestió de Modals
         function openModal(key) {
             const container = document.getElementById('modal-container');
             const title = document.getElementById('modal-title');
@@ -378,7 +416,7 @@
         window.onload = function() {
             setTimeout(() => {
                 const banner = document.getElementById('cookie-banner');
-                banner.style.transform = 'translateY(0)';
+                if(banner) banner.style.transform = 'translateY(0)';
             }, 1000);
         }
 
