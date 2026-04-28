@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodLogistics S.A. | Logística Alimentària d'Alta Precisió</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .hero-gradient { 
+            background: linear-gradient(rgba(6, 78, 59, 0.85), rgba(6, 78, 59, 0.85)), 
+            url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+        .modal { transition: opacity 0.3s ease; }
+        .cookie-banner { transition: transform 0.5s ease-in-out; }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #10b981; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- BANNER DE COOKIES -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[200] p-6 cookie-banner translate-y-full">
+        <div class="max-w-4xl mx-auto bg-white border border-slate-200 shadow-2xl rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6">
+            <div class="flex-1">
+                <h4 class="font-bold text-slate-800 mb-2 flex items-center">
+                    <i class="fas fa-cookie-bite text-emerald-600 mr-2"></i> Privadesa i Cookies
+                </h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Utilitzem cookies per optimitzar el rendiment del lloc web. Pots acceptar-les totes o gestionar les teves preferències segons les teves necessitats.
+                </p>
+            </div>
+            <div class="flex gap-3 w-full md:w-auto">
+                <button onclick="acceptAllCookies()" class="flex-1 md:flex-none bg-emerald-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-emerald-700 transition text-sm">Acceptar totes</button>
+                <button onclick="openModal('cookies')" class="flex-1 md:flex-none bg-slate-100 text-slate-700 px-6 py-2 rounded-lg font-bold hover:bg-slate-200 transition text-sm">Configurar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVEGACIÓ -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-emerald-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-emerald-200">
+                    <i class="fas fa-truck-fast"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-800 uppercase">FoodLogistics<span class="text-emerald-600">.</span></span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8 font-medium text-slate-600">
+                <a href="#inici" class="hover:text-emerald-600 transition">Inici</a>
+                <a href="#nosaltres" class="hover:text-emerald-600 transition">Nosaltres</a>
+                <a href="#serveis" class="hover:text-emerald-600 transition">Serveis</a>
+                <a href="#contacte" class="hover:text-emerald-600 transition">Contacte</a>
+            </div>
+
+            <a href="#contacte" class="bg-emerald-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-emerald-700 transition shadow-lg shadow-emerald-200">
+                Parlem?
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="inici" class="h-screen flex items-center justify-center hero-gradient text-white pt-16">
+        <div class="max-w-4xl px-6 text-center">
+            <span class="inline-block px-4 py-1 bg-emerald-500/30 border border-emerald-400 rounded-full text-sm font-semibold mb-6 uppercase tracking-wider">Qualitat Certificada</span>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">Sense falses promeses. <br><span class="text-emerald-400">Logística que funciona.</span></h1>
+            <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                Especialistes en el transport alimentari d'alta precisió amb tecnologia de control tèrmic en temps real i resposta garantida.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#serveis" class="bg-emerald-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-emerald-700 transition shadow-xl shadow-emerald-900/20">Veure Serveis</a>
+                <a href="#contacte" class="border border-white/30 backdrop-blur-sm px-8 py-4 rounded-lg font-bold hover:bg-white/10 transition">Sol·licitar Pressupost</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- STATS -->
+    <section class="py-12 bg-white border-b">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <p class="text-4xl font-bold text-emerald-600">500+</p>
+                    <p class="text-slate-500 text-sm uppercase tracking-widest mt-2">Vehicles Pròpis</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-bold text-emerald-600">15k</p>
+                    <p class="text-slate-500 text-sm uppercase tracking-widest mt-2">Tones / Mes</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-bold text-emerald-600">24/7</p>
+                    <p class="text-slate-500 text-sm uppercase tracking-widest mt-2">Monitorització</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-bold text-emerald-600">100%</p>
+                    <p class="text-slate-500 text-sm uppercase tracking-widest mt-2">Traçabilitat</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOSALTRES -->
+    <section id="nosaltres" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Instal·lacions FoodLogistics" class="rounded-2xl shadow-2xl border-4 border-white">
+                <div class="absolute -bottom-6 -right-6 bg-emerald-600 text-white p-8 rounded-2xl hidden lg:block shadow-xl">
+                    <p class="text-3xl font-bold">25 anys</p>
+                    <p class="opacity-80 uppercase text-xs tracking-widest">Experiència en el sector</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-emerald-600 font-bold tracking-widest uppercase text-sm mb-4">La nostra missió</h2>
+                <h3 class="text-4xl font-bold mb-6 text-slate-800 leading-snug">Excel·lència en la cadena de fred.</h3>
+                <p class="text-slate-600 mb-6 leading-relaxed text-lg">
+                    FoodLogistics S.A. és l'aliat estratègic per a les empreses del sector alimentari que busquen un servei de transport i emmagatzematge sense fissures. Assegurem la integritat de cada producte amb rigor i eficiència.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <div class="flex items-center space-x-3 bg-white p-4 rounded-xl shadow-sm">
+                        <i class="fas fa-certificate text-emerald-500 text-xl"></i>
+                        <span class="text-slate-700 font-medium">Norma IFS Logistics</span>
+                    </div>
+                    <div class="flex items-center space-x-3 bg-white p-4 rounded-xl shadow-sm">
+                        <i class="fas fa-leaf text-emerald-500 text-xl"></i>
+                        <span class="text-slate-700 font-medium">Flota Sostenible</span>
+                    </div>
+                </div>
+                <button onclick="openModal('legal')" class="text-emerald-600 font-bold hover:text-emerald-700 transition flex items-center">
+                    Conèixer el nostre compromís &rarr;
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVEIS -->
+    <section id="serveis" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 text-center mb-16">
+            <h2 class="text-4xl font-bold text-slate-800 mb-4 font-display uppercase tracking-tight">Solucions Logístiques</h2>
+            <div class="w-20 h-1.5 bg-emerald-600 mx-auto rounded-full"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+            <div class="p-10 bg-slate-50 rounded-2xl border border-slate-100 hover:border-emerald-500 hover:bg-white hover:shadow-2xl transition-all duration-300 group">
+                <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors shadow-inner">
+                    <i class="fas fa-snowflake text-3xl"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-4 text-slate-800 tracking-tight">Transport Refrigerat</h4>
+                <p class="text-slate-600 leading-relaxed">Control total entre -20ºC i +4ºC amb registres de temperatura digitals i monitorització GPS en temps real.</p>
+            </div>
+            <div class="p-10 bg-slate-50 rounded-2xl border border-slate-100 hover:border-emerald-500 hover:bg-white hover:shadow-2xl transition-all duration-300 group">
+                <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors shadow-inner">
+                    <i class="fas fa-boxes-stacked text-3xl"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-4 text-slate-800 tracking-tight">Emmagatzematge Controlat</h4>
+                <p class="text-slate-600 leading-relaxed">Àmplies cambres frigorífiques equipades amb sistemes avançats de gestió d'inventari i seguretat.</p>
+            </div>
+            <div class="p-10 bg-slate-50 rounded-2xl border border-slate-100 hover:border-emerald-500 hover:bg-white hover:shadow-2xl transition-all duration-300 group">
+                <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors shadow-inner">
+                    <i class="fas fa-route text-3xl"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-4 text-slate-800 tracking-tight">Distribució Capil·lar</h4>
+                <p class="text-slate-600 leading-relaxed">Logística d'última milla optimitzada per a l'entorn urbà, garantint entregues puntuals en qualsevol punt.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTE -->
+    <section id="contacte" class="py-24 bg-emerald-950 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-600/10 rounded-full -mr-32 -mt-32"></div>
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 relative z-10">
+            <div>
+                <h2 class="text-4xl font-bold mb-6 font-display">Tingues el control total de la teva logística.</h2>
+                <p class="text-emerald-200/70 mb-10 text-lg">Contacta amb el nostre equip d'assessors per rebre una proposta personalitzada segons els teus volums.</p>
+                
+                <div class="space-y-8">
+                    <div class="flex items-center space-x-5">
+                        <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-emerald-400 border border-white/10">
+                            <i class="fas fa-location-dot text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-emerald-400 font-bold uppercase tracking-widest">Oficines Centrals</p>
+                            <p class="text-lg">Carrer de la Riera, 45, 08301 Mataró (Barcelona)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-5">
+                        <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-emerald-400 border border-white/10">
+                            <i class="fas fa-phone text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-emerald-400 font-bold uppercase tracking-widest">Atenció Directe</p>
+                            <p class="text-lg">+34 937 555 789</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form class="bg-white p-10 rounded-3xl text-slate-900 space-y-6 shadow-2xl">
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-tighter">Nom</label>
+                        <input type="text" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none transition" placeholder="Nom">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-tighter">Empresa</label>
+                        <input type="text" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none transition" placeholder="Nom Fiscal">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-tighter">Correu Electrònic</label>
+                    <input type="email" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none transition" placeholder="correu@empresa.com">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-tighter">Consulta</label>
+                    <textarea rows="4" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none transition" placeholder="Detalls del servei requerit..."></textarea>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <input type="checkbox" id="privacy" class="mt-1 w-5 h-5 accent-emerald-600 cursor-pointer" required>
+                    <label for="privacy" class="text-xs text-slate-400 leading-relaxed">
+                        He llegit i accepto la <button type="button" onclick="openModal('privadesa')" class="text-emerald-600 hover:underline">política de privadesa</button> i el tractament de dades personals.
+                    </label>
+                </div>
+                <button type="submit" class="w-full bg-emerald-600 text-white py-5 rounded-2xl font-bold hover:bg-emerald-700 transition-all hover:scale-[1.01] active:scale-95 shadow-xl shadow-emerald-200 uppercase tracking-widest text-sm">
+                    Enviar Sol·licitud
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white text-slate-500 py-16 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 items-start text-center md:text-left">
+            <div class="space-y-4">
+                <div class="flex items-center justify-center md:justify-start space-x-2">
+                    <div class="w-8 h-8 bg-emerald-600 rounded flex items-center justify-center text-white">
+                        <i class="fas fa-truck-fast text-xs"></i>
+                    </div>
+                    <span class="text-lg font-bold text-slate-900 uppercase">FoodLogistics<span class="text-emerald-600">.</span></span>
+                </div>
+                <p class="text-sm max-w-xs leading-relaxed text-slate-400 mx-auto md:mx-0">
+                    Líders en logística integral i transport a temperatura controlada. Solucions a mida per al sector alimentari.
+                </p>
+            </div>
+            
+            <div class="flex flex-col space-y-4 text-sm font-medium">
+                <p class="text-slate-900 font-bold uppercase tracking-widest text-xs mb-2">Informació Legal</p>
+                <button onclick="openModal('legal')" class="hover:text-emerald-600 transition">Avís Legal</button>
+                <button onclick="openModal('privadesa')" class="hover:text-emerald-600 transition">Política de Privadesa</button>
+                <button onclick="openModal('cookies')" class="hover:text-emerald-600 transition">Configuració de Cookies</button>
+            </div>
+
+            <div class="text-sm space-y-2">
+                <p class="text-slate-900 font-bold uppercase tracking-widest text-xs mb-4">Contacte Directe</p>
+                <p><i class="fas fa-envelope mr-2 text-emerald-600"></i> info@foodlogistics.com</p>
+                <p><i class="fas fa-map-marker-alt mr-2 text-emerald-600"></i> Mataró, Maresme</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+            <p>&copy; 2026 FoodLogistics S.A. - Tots els drets reservats.</p>
+            <div class="flex space-x-4">
+                <a href="#" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center hover:bg-emerald-600 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center hover:bg-emerald-600 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL SISTEMA -->
+    <div id="modal-container" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[300] hidden flex items-center justify-center p-6">
+        <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden max-h-[85vh] flex flex-col">
+            <div class="p-8 border-b flex justify-between items-center bg-emerald-50">
+                <h3 id="modal-title" class="text-2xl font-bold text-emerald-900">Títol</h3>
+                <button onclick="closeModal()" class="w-10 h-10 rounded-full hover:bg-white transition flex items-center justify-center text-slate-400 hover:text-emerald-600 shadow-sm">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="modal-content" class="p-8 overflow-y-auto text-slate-600 leading-relaxed custom-scrollbar text-sm">
+                <!-- Contingut -->
+            </div>
+            <div class="p-6 border-t bg-slate-50 flex justify-end gap-3">
+                <button onclick="closeModal()" class="bg-emerald-600 text-white px-8 py-3 rounded-xl hover:bg-emerald-700 transition font-bold shadow-lg shadow-emerald-200">D'acord</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modals = {
+            legal: {
+                title: "Avís Legal",
+                content: `<div class="space-y-6">
+                            <p>D'acord amb la Llei 34/2002, d'11 de juliol, de Serveis de la Societat de la Informació i de Comerç Electrònic, es detallen les dades del titular:</p>
+                            <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-100">
+                                <p class="mb-2"><strong>Raó Social:</strong> FoodLogistics S.A.</p>
+                                <p class="mb-2"><strong>NIF:</strong> A00000000</p>
+                                <p class="mb-2"><strong>Domicili:</strong> Carrer de la Riera, 45, 08301 Mataró (Barcelona)</p>
+                                <p><strong>Email de contacte:</strong> info@foodlogistics.com</p>
+                            </div>
+                            <p>L'usuari es compromet a fer un ús adequat dels continguts i serveis que FoodLogistics S.A. ofereix a través del seu portal.</p>
+                          </div>`
+            },
+            privadesa: {
+                title: "Política de Privadesa",
+                content: `<div class="space-y-4">
+                            <p>Informem als nostres usuaris sobre el tractament de les seves dades personals segons el RGPD:</p>
+                            <ul class="space-y-4">
+                                <li class="flex items-start bg-slate-50 p-4 rounded-xl">
+                                    <i class="fas fa-shield-alt text-emerald-600 mt-1 mr-3"></i>
+                                    <span><strong>Responsable:</strong> FoodLogistics S.A.</span>
+                                </li>
+                                <li class="flex items-start bg-slate-50 p-4 rounded-xl">
+                                    <i class="fas fa-info-circle text-emerald-600 mt-1 mr-3"></i>
+                                    <span><strong>Finalitat:</strong> Gestió de les sol·licituds d'informació i serveis professionals realitzades a través del formulari.</span>
+                                </li>
+                                <li class="flex items-start bg-slate-50 p-4 rounded-xl">
+                                    <i class="fas fa-hand-holding-heart text-emerald-600 mt-1 mr-3"></i>
+                                    <span><strong>Legitimació:</strong> Consentiment exprés de l'interessat en marcar la casella d'acceptació.</span>
+                                </li>
+                            </ul>
+                          </div>`
+            },
+            cookies: {
+                title: "Configuració de Cookies",
+                content: `<div class="space-y-6">
+                            <p class="text-sm">Personalitza la teva experiència de navegació habilitant o deshabilitant les següents galetes:</p>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                    <div>
+                                        <p class="font-bold text-slate-800">Tècniques (Obligatòries)</p>
+                                        <p class="text-xs text-slate-500">Garanteixen el funcionament correcte del lloc.</p>
+                                    </div>
+                                    <input type="checkbox" checked disabled class="w-6 h-6 accent-emerald-600">
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                    <div>
+                                        <p class="font-bold text-slate-800">Analítiques</p>
+                                        <p class="text-xs text-slate-500">Permeten conèixer l'ús que es fa del lloc web.</p>
+                                    </div>
+                                    <input type="checkbox" class="w-6 h-6 accent-emerald-600">
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                    <div>
+                                        <p class="font-bold text-slate-800">Publicitat</p>
+                                        <p class="text-xs text-slate-500">Optimització d'anuncis segons el perfil de l'usuari.</p>
+                                    </div>
+                                    <input type="checkbox" class="w-6 h-6 accent-emerald-600">
+                                </div>
+                            </div>
+                            <button onclick="acceptAllCookies()" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700 transition">Guardar preferències</button>
+                          </div>`
+            }
+        };
+
+        function openModal(key) {
+            const container = document.getElementById('modal-container');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
+            title.innerText = modals[key].title;
+            content.innerHTML = modals[key].content;
+            container.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const container = document.getElementById('modal-container');
+            container.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function acceptAllCookies() {
+            const banner = document.getElementById('cookie-banner');
+            banner.style.transform = 'translateY(100%)';
+            setTimeout(() => banner.classList.add('hidden'), 500);
+            closeModal();
+        }
+
+        window.onload = function() {
+            setTimeout(() => {
+                const banner = document.getElementById('cookie-banner');
+                banner.style.transform = 'translateY(0)';
+            }, 1000);
+        }
+
+        document.getElementById('modal-container').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+    </script>
+</body>
+</html>
